@@ -235,9 +235,13 @@ class Handler(BaseHTTPRequestHandler):
 
     def _serve_file(self, name):
         import mimetypes
-        path = os.path.join(PUBLIC_DIR, name)
+        path = os.path.realpath(os.path.join(PUBLIC_DIR, name))
+        if not path.startswith(os.path.realpath(PUBLIC_DIR) + os.sep):
+            return None
+        if os.path.isdir(path):
+            path = os.path.join(path, "index.html")
         if not os.path.isfile(path):
-            return self._send_json(404, {"ok": False, "error": "not found"})
+            return None
         ctype, _ = mimetypes.guess_type(path)
         with open(path, "rb") as f:
             body = f.read()
@@ -246,15 +250,32 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+        return True
+
+    def _serve_404(self):
+        body = (b"<!doctype html><title>Page not found - VidFetch</title>"
+                b"<h1>Page not found</h1><p>The page you asked for does not exist. "
+                b'<a href="/">Go to the VidFetch downloader</a>.</p>')
+        self.send_response(404)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
 
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         if parsed.path in ("/", "/index.html"):
-            return self._serve_file("index.html")
+            return self._serve_file("index.html") or self._serve_404()
         if parsed.path == "/health":
             return self._send_json(200, {"ok": True, "service": "vidfetch-backend",
                                           "endpoints": ["/api/extract?url=...",
                                                         "/api/download?url=...&quality=hd|sd"]})
+        if parsed.path not in ("/api/extract", "/api/download"):
+            # any other path: a static page under public/ (directory -> index.html)
+            name = urllib.parse.unquote(parsed.path.lstrip("/")) or "index.html"
+            if self._serve_file(name) is None:
+                return self._serve_404()
+            return
         if parsed.path not in ("/api/extract", "/api/download"):
             return self._send_json(404, {"ok": False, "error": "not found"})
         qs = urllib.parse.parse_qs(parsed.query)
