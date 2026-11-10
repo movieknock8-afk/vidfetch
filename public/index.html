@@ -479,8 +479,7 @@ document.getElementById('fetchBtn').addEventListener('click',function(){
     document.getElementById('resultTitle').textContent=d.title||'Facebook Video';
     document.getElementById('thumbBadge').textContent=d.has_hd?'HD':'SD';
     var dur=d.duration_seconds?(' · '+Math.floor(d.duration_seconds/60)+':'+String(d.duration_seconds%60).padStart(2,'0')):'';
-    document.getElementById('resultMeta').textContent=(d.video_id?'ID '+d.video_id:'')+dur+'
-'+d.source_url;
+    document.getElementById('resultMeta').textContent=(d.video_id?'ID '+d.video_id:'')+dur+'\n'+d.source_url;
     var th=document.querySelector('.thumb');
     if(d.thumbnail){ th.style.backgroundImage='url('+d.thumbnail+')'; th.style.backgroundSize='cover'; th.style.backgroundPosition='center'; }
     var q=document.getElementById('qualities'); q.innerHTML='';
