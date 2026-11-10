@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vidfetch-iwsm.onrender.com/sitemap.xml

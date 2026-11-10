@@ -7,6 +7,8 @@
 <meta name="description" content="VidFetch — Free Facebook Reels downloader & Facebook video downloader HD. Download Facebook videos on Android & iPhone in HD, SD or MP3. Descargar videos de Facebook gratis · Baixar vídeos do Facebook grátis. No sign-up, no watermark.">
 <link rel="icon" href="data:,">
 <title>VidFetch — Facebook Video Downloader (HD, Reels & MP3)</title>
+<link rel="canonical" href="https://vidfetch-iwsm.onrender.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VidFetch","applicationCategory":"MultimediaApplication","operatingSystem":"Any","url":"https://vidfetch-iwsm.onrender.com/","description":"Free Facebook video downloader - save Facebook videos and Reels in HD or Normal quality, no sign-up, no watermark."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -183,11 +185,11 @@ footer a{display:block;padding:5px 0;font-size:14px;min-height:32px}
 <div class="wrap"><div class="ad ad-top"><small>Advertisement</small><strong>Leaderboard 728 × 90 — Monetag / Adsterra slot</strong><span style="font-size:12px">Your ad code goes here</span></div>
   <nav class="kwnav" aria-label="Popular downloaders">
     <span class="lbl">Popular:</span>
-    <a href="#facebook-reels-downloader">Facebook Reels Downloader</a>
-    <a href="#facebook-video-downloader-hd">Facebook Video Downloader HD</a>
-    <a href="#download-facebook-videos-android">Download on Android</a>
-    <a href="#descargar-videos-de-facebook">Descargar videos de Facebook</a>
-    <a href="#baixar-videos-do-facebook">Baixar vídeos do Facebook</a>
+    <a href="/facebook-reels-downloader/">Facebook Reels Downloader</a>
+    <a href="/facebook-video-downloader-hd/">Facebook Video Downloader HD</a>
+    <a href="/download-facebook-videos-android/">Download on Android</a>
+    <a href="/descargar-videos-de-facebook/">Descargar videos de Facebook</a>
+    <a href="/baixar-videos-do-facebook/">Baixar vídeos do Facebook</a>
   </nav>
 </div>
 
@@ -428,7 +430,7 @@ footer a{display:block;padding:5px 0;font-size:14px;min-height:32px}
   <div class="foot-grid">
     <div><div class="logo" style="margin-bottom:10px"><span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M7 4.5v15l13-7.5-13-7.5z"/></svg></span>Vid<em style="color:#2FE6A8;font-style:normal;margin-left:-10px">Fetch</em></div><p style="font-size:14px;margin:0;max-width:280px">Free online video downloader for Facebook, TikTok and Instagram. Fast, no sign-up, no watermark.</p></div>
     <div><h4>Tools</h4><a href="#tool">Facebook Downloader</a><a href="#tool">Reels Downloader</a><a href="#tool">TikTok Downloader</a><a href="#tool">Instagram Downloader</a><a href="#tool">FB to MP3</a></div>
-    <div><h4>Guides</h4><a href="#facebook-reels-downloader">Facebook Reels Downloader</a><a href="#facebook-video-downloader-hd">Video Downloader HD</a><a href="#download-facebook-videos-android">Download on Android</a><a href="#descargar-videos-de-facebook">Descargar videos (ES)</a><a href="#baixar-videos-do-facebook">Baixar vídeos (PT)</a></div>
+    <div><h4>Guides</h4><a href="/facebook-reels-downloader/">Facebook Reels Downloader</a><a href="/facebook-video-downloader-hd/">Video Downloader HD</a><a href="/download-facebook-videos-android/">Download on Android</a><a href="/descargar-videos-de-facebook/">Descargar videos (ES)</a><a href="/baixar-videos-do-facebook/">Baixar vídeos (PT)</a></div>
     <div><h4>Site</h4><a href="#faq">FAQ</a><a href="#compare">Why VidFetch</a><a href="#tools">All Tools</a></div>
   </div>
   <div class="foot-bottom"><span>© 2026 VidFetch. Not affiliated with Meta, Facebook, TikTok or Instagram.</span><span>Only download content you own or have permission to save.</span></div>
@@ -524,6 +526,8 @@ document.getElementById('langEs').addEventListener('click',function(){setLang('e
 document.getElementById('esBtn').addEventListener('click',function(){setLang('es');window.scrollTo({top:0,behavior:'smooth'});toast('Idioma cambiado a español')});
 var esCta=document.querySelector('#descargar-videos-de-facebook .kw-cta');
 if(esCta){esCta.addEventListener('click',function(){setLang('es')})}
+/* Deep link: /?url=<facebook link> fills the box and fetches (used by the SEO landing pages) */
+(function(){try{var u=new URLSearchParams(location.search).get('url');if(u&&(u.indexOf('facebook.com')>-1||u.indexOf('fb.watch')>-1)){input.value=u;document.getElementById('fetchBtn').click();}}catch(e){}})();
 </script>
 
 <!-- VIGNETTE AD (FDOWN-style): once per session, first download click. Close starts the held download. -->
