@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: vidfetch
+    env: python
+    buildCommand: "pip install yt-dlp"
+    startCommand: python3 server.py
+    healthCheckPath: /health
